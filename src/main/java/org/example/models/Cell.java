@@ -19,6 +19,17 @@ public class Cell {
         this.cellState = CellState.EMPTY;
     }
 
+    public  void display() {
+
+        //if cell is empty
+        if(player == null){
+            System.out.print("| " + " |");
+        }else{
+            System.out.print("| "+player.getSymbol().getaChar()+" |");
+        }
+
+    }
+
 
     public int getRow() {
         return row;

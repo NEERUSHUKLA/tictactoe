@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.controllers.GameController;
 import org.example.models.Game;
 import org.example.models.Player;
 import org.example.models.PlayerType;
@@ -17,6 +18,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("GameStarts!");
         Scanner scn = new Scanner(System.in);
+        GameController gameController = new GameController();
 
 //        int dimension = scn.nextInt();
 
@@ -37,10 +39,11 @@ public class Main {
 
         List<WinningStrategy> winningStrategies = new ArrayList<>();
 
-        Game game = Game.getBuilder().setDimension(dimension)
-                                     .setPlayers(players)
-                                     .setWinningStrategies(winningStrategies)
-                                     .build();
+        Game game = GameController.startGame(dimension , players , winningStrategies);
+
+//       gameController.printBoard(game);
+
+        while(gameController.checkGameState())
 
         System.out.println("DEBUG");
 

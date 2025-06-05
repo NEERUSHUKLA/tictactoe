@@ -87,6 +87,10 @@ public class Game {
         this.winningStrategies = winningStrategies;
     }
 
+    public void printBoar(){
+        board.printBoard();
+    }
+
     public static class Builder{
         private int dimension;
         private List<Player> players;
