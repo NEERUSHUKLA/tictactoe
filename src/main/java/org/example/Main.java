@@ -1,10 +1,8 @@
 package org.example;
 
 import org.example.controllers.GameController;
-import org.example.models.Game;
-import org.example.models.Player;
-import org.example.models.PlayerType;
-import org.example.models.Symbol;
+import org.example.exceptions.InvalidMoveException;
+import org.example.models.*;
 import org.example.strategies.winningStrategies.WinningStrategy;
 
 import javax.script.ScriptContext;
@@ -15,7 +13,7 @@ import java.util.Scanner;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidMoveException {
         System.out.println("GameStarts!");
         Scanner scn = new Scanner(System.in);
         GameController gameController = new GameController();
@@ -43,7 +41,25 @@ public class Main {
 
 //       gameController.printBoard(game);
 
-        while(gameController.checkGameState())
+        while(gameController.checkGameState(game).equals(GameState.IN_PROGRESS)){
+            //1 show the board
+            // make move
+            game.printBoar();
+
+            System.out.println("Do you want to undo ? y/n");
+            String isUndo = scn.next();
+
+            if(isUndo.equalsIgnoreCase("y")){
+                //take the undo operation
+                gameController.undo(game);
+                continue;
+            }else{
+                gameController.makeMove(game);
+            }
+
+            //
+
+        }
 
         System.out.println("DEBUG");
 

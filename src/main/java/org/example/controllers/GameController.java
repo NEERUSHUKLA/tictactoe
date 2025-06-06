@@ -1,5 +1,6 @@
 package org.example.controllers;
 
+import org.example.exceptions.InvalidMoveException;
 import org.example.models.Game;
 import org.example.models.GameState;
 import org.example.models.Player;
@@ -17,7 +18,8 @@ public class GameController {
                 .build();
     }
 
-    public void makeMove(){
+    public void makeMove(Game game) throws InvalidMoveException {
+        game.makeMove();
 
     }
 
@@ -33,6 +35,10 @@ public class GameController {
 
     public void printBoard(Game game){
         game.printBoar();
+    }
+
+    public void undo(Game game) {
+
     }
 
 
